@@ -1,0 +1,20 @@
+version: '3.9'
+
+networks:
+  default:
+    external: true
+    name: docker
+
+services:
+  open-resume:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my/open-resume:latest
+    container_name: ${CONTAINER_NAME:-open-resume}
+    hostname: ${HOSTNAME:-open-resume}
+    restart: always
+    networks:
+      - default
+    ports:
+      - 15103:3000
